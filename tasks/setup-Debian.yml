@@ -1,4 +1,8 @@
 ---
+- name: Refresh apt cache.
+  ansible.builtin.apt:
+    update_cache: yes
+
 - name: Ensure dependencies are installed.
   apt:
     name:
@@ -7,7 +11,6 @@
       - gnupg-utils
       - python3-debian
     state: present
-    update_cache: true
 
 - name: Add Kubernetes repository.
   deb822_repository:
