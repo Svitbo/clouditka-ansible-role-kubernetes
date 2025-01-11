@@ -1,14 +1,9 @@
 ---
-- name: Refresh apt cache.
-  ansible.builtin.apt:
-    update_cache: yes
-
 - name: Ensure dependencies are installed.
   apt:
     name:
       - apt-transport-https
       - ca-certificates
-      - gnupg-utils
       - python3-debian
     state: present
 
