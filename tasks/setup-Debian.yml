@@ -4,7 +4,7 @@
     name:
       - apt-transport-https
       - ca-certificates
-      - gnupg2
+      - gnupg-utils
       - python3-debian
     state: present
 
