@@ -75,7 +75,7 @@
 - name: Configure Weave networking.
   command: "{{ item }}"
   with_items:
-    - "kubectl apply -f https://reweave.azurewebsites.net/k8s/{{ kubectl_version.stdout_lines[0] }}/net.yaml"
+    - "kubectl apply -f https://reweave.azurewebsites.net/k8s/v{{ kubernetes_version_rhel_package }}/net.yaml"
   register: weave_result
   changed_when: "'created' in weave_result.stdout"
   when: kubernetes_pod_network.cni == 'weave'
