@@ -63,19 +63,19 @@
   retries: 12
   delay: 5
 
-- name: Get Kubernetes version for Weave installation.
-  shell: kubectl version | base64 | tr -d '\n'
-  changed_when: false
-  register: kubectl_version
-  when: kubernetes_pod_network.cni == 'weave'
-  until: kubectl_version is not failed
-  retries: 12
-  delay: 5
+# - name: Get Kubernetes version for Weave installation.
+#   shell: kubectl version | base64 | tr -d '\n'
+#   changed_when: false
+#   register: kubectl_version
+#   when: kubernetes_pod_network.cni == 'weave'
+#   until: kubectl_version is not failed
+#   retries: 12
+#   delay: 5
 
 - name: Configure Weave networking.
   command: "{{ item }}"
   with_items:
-    - "kubectl apply -f https://reweave.azurewebsites.net/k8s/v{{ kubernetes_version_rhel_package }}/net.yaml"
+    - "kubectl apply -f https://reweave.azurewebsites.net/k8s/v{{ kubernetes_version }}/net.yaml"
   register: weave_result
   changed_when: "'created' in weave_result.stdout"
   when: kubernetes_pod_network.cni == 'weave'
